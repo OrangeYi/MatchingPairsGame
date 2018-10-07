@@ -61,8 +61,8 @@ namespace MatchingPairsGame
                 }
                 secondClicked = clickedLabel;
                 secondClicked.ForeColor = Color.Black;
-
-                if(firstClicked.Text == secondClicked.Text)
+                ChickWinner();
+                if (firstClicked.Text == secondClicked.Text)
                 {
                     firstClicked = null;
                     secondClicked = null;
@@ -79,6 +79,22 @@ namespace MatchingPairsGame
             secondClicked.ForeColor = secondClicked.BackColor;
             firstClicked = null;
             secondClicked = null;
+        }
+        private void ChickWinner()
+        {
+            foreach(Control control in tableLayoutPanel1.Controls)
+            {
+                Label iconlabel = control as Label;
+                if(iconlabel != null)
+                {
+                    if(iconlabel.ForeColor == iconlabel.BackColor)
+                    {
+                        return;
+                    }
+                }
+            }
+            MessageBox.Show("You matched all the icons!", "Congratulations and well done!");
+            Close();
         }
     }
 }
